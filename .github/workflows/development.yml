@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ppijerman_ppij-wellbeing-bot -Dorganization=${{ secrets.SONAR_ORGANIZATION }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ppijerman_ppij-wellbeing-bot -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
   build:
     name: Build and Deploy
     needs:
