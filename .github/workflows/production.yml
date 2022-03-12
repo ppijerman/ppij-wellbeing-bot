@@ -15,9 +15,6 @@ jobs:
         with:
           distribution: temurin
           java-version: 11
-      - uses: gradle/gradle-build-action@v2
-        with:
-          arguments: test
   qc:
     name: Code Quality Check
     runs-on: ubuntu-latest
