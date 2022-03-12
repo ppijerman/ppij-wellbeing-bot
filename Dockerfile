@@ -1,4 +1,4 @@
-FROM openjdk:11-alpine
+FROM eclipse-temurin:11
 LABEL org.ppijerman.wellbeing-bot.athor="media@ppijerman.org"
 LABEL org.ppijerman.wellbeing-bot.maintainer="media@ppijerman.org"
 WORKDIR ./app
