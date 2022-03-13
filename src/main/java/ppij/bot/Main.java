@@ -58,7 +58,7 @@ public class Main {
             sql = "CREATE TABLE USER_REGISTRATION " +
                     "(id VARCHAR(255) not NULL, " +
                     " NAMA VARCHAR(255), " +
-                    " UMUR VARCHAR(255), " +
+                    " UMUR int , " +
                     " KESIBUKAN VARCHAR(255), " +
                     " DOMISILI VARCHAR(255), " +
                     " INSTITUSI VARCHAR(255), " +
@@ -108,7 +108,7 @@ public class Main {
 
             System.out.printf("%s \t||\t %S \t||\t %S \t||\t %S \t||\t %S \t||\t %S \t||\t %S \t||\t %S \r\n" +
                             "\t||\t %S ", rs.getString("id"), rs.getString("NAMA"),
-                    rs.getString("UMUR"), rs.getString("KESIBUKAN"),
+                    rs.getInt("UMUR"), rs.getString("KESIBUKAN"),
                     rs.getString("DOMISILI"), rs.getString("INSTITUSI"),
                     rs.getString("MATA_KULIAH"), rs.getString("EMAIL"), rs.getString("ALASAN_HARAPAN"));
         }
