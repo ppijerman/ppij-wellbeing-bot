@@ -351,8 +351,8 @@ public class BotListener extends ListenerAdapter {
 
     private void removeUserTimeout(String id) {
         userTimer.get(id).cancel(true);
-        if (userTimer.get(id).isCancelled()) {
-            log.debug("The timer for user {} is not cancelled even though removeUserTimeout called!", id);
+        if (!userTimer.get(id).isCancelled()) {
+            log.warn("The timer for user {} is not cancelled even though removeUserTimeout called!", id);
         }
         userTimer.remove(id);
     }
