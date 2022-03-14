@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-alpine
+FROM eclipse-temurin:16-alpine
 LABEL org.ppijerman.wellbeing-bot.vendor="PPI Jerman"
 LABEL org.ppijerman.wellbeing-bot.title="Wellbeing Bot"
 LABEL org.ppijerman.wellbeing-bot.licenses="MIT"
