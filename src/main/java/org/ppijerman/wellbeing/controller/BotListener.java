@@ -56,25 +56,20 @@ public class BotListener extends ListenerAdapter {
             "Sachsen",
             "Sachsen-Anhalt",
             "Schleswig-Holstein",
-            "Thüringen"
+            "Thüringen",
+            "Indonesia",
+            "Europe",
+            "Others"
     ).toList();
 
     private static final List<String> OCCUPATION_LIST = Stream.of(
-            "Studienkolleg",
-            "Studium (Bachelor)",
-            "Studium (Master)",
-            "Ausbildung",
-            "Sprachkurs",
+            "Studienkolleg (Foundation Year)",
+            "Bachelor Student",
+            "Master Student",
+            "Ausbildung (Apprenticeship)",
+            "Sprachkurs (Language Course)",
+            "Housewife / Househusband",
             "Others (specify yourself directly)"
-    ).toList();
-
-    private static final List<String> AGE_LIST = Stream.of(
-            "18-24",
-            "25-31",
-            "32-38",
-            "39-45",
-            "46-55",
-            "56 and over"
     ).toList();
 
     private final String WELCOME_MESSAGE;
@@ -157,23 +152,18 @@ public class BotListener extends ListenerAdapter {
                 } else if (Objects.equals(step, UMUR)) {
                     try {
                         int age = Integer.parseInt(message);
-                        /*
-                        int ageCategory = Integer.parseInt(message);
-                        if (ageCategory > 0 && ageCategory <= AGE_LIST.size()) {
-                            val[step] = AGE_LIST.get(ageCategory - 1);
+
+                        if (age > 0 && age <= 99) {
+                            val[step] = age;
                             val[0] = KESIBUKAN;
                             privateChannel.sendMessage(KESIBUKAN_MESSAGE).queue();
                         } else {
-                            privateChannel.sendMessage("Invalid age format (1 - " + AGE_LIST.size() + ")").queue();
+                            privateChannel.sendMessage("Invalid age format (1 - 99)").queue();
                             privateChannel.sendMessage(UMUR_MESSAGE).queue();
                         }
-                        */
-                        val[step] = age;
-                        val[0] = KESIBUKAN;
-                        privateChannel.sendMessage(KESIBUKAN_MESSAGE).queue();
                     } catch (NumberFormatException e) {
                         log.warn("Cannot parse number correctly on input: {}", message);
-                        privateChannel.sendMessage("Cannot correctly parse your input, invalid age format (1 - " + AGE_LIST.size() + ")").queue();
+                        privateChannel.sendMessage("Cannot correctly parse your input, invalid age format (1 - 99)").queue();
                         privateChannel.sendMessage(UMUR_MESSAGE).queue();
                     }
                 } else if (Objects.equals(step, KESIBUKAN)) {
@@ -343,7 +333,7 @@ public class BotListener extends ListenerAdapter {
 
     private void setUserTimeout(String id) {
         final Runnable beeper = () -> {
-            // TODO REMOVE USER HERE
+            userStageMap.remove(id);
             log.warn("Remove User: {} from HashMap due to inactivity", id);
         };
         userTimer.put(id, userTimeoutScheduler.schedule(beeper, 600, SECONDS));
@@ -351,8 +341,8 @@ public class BotListener extends ListenerAdapter {
 
     private void removeUserTimeout(String id) {
         userTimer.get(id).cancel(true);
-        if (userTimer.get(id).isCancelled()) {
-            log.debug("The timer for user {} is not cancelled even though removeUserTimeout called!", id);
+        if (!userTimer.get(id).isCancelled()) {
+            log.warn("The timer for user {} is not cancelled even though removeUserTimeout called!", id);
         }
         userTimer.remove(id);
     }
