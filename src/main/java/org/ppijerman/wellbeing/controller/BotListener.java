@@ -333,8 +333,7 @@ public class BotListener extends ListenerAdapter {
 
     private void setUserTimeout(String id) {
         final Runnable beeper = () -> {
-            // TODO REMOVE USER HERE
-
+            userStageMap.remove(id);
             log.warn("Remove User: {} from HashMap due to inactivity", id);
         };
         userTimer.put(id, userTimeoutScheduler.schedule(beeper, 600, SECONDS));
