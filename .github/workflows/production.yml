@@ -61,7 +61,7 @@ jobs:
           distribution: temurin
           java-version: 16
       - name: Build Artifact with Maven
-        run: mvn -B package
+        run: mvn -B compile assembly:single
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx

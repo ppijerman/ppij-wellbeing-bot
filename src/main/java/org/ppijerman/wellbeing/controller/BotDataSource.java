@@ -1,4 +1,4 @@
-package ppij.bot.controller;
+package org.ppijerman.wellbeing.controller;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package ppij.bot.controller;
+package org.ppijerman.wellbeing.controller;
 
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.Event;

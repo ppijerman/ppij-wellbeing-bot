@@ -6,5 +6,4 @@ LABEL org.ppijerman.wellbeing-bot.ref.name="wellbeing-bot"
 LABEL org.ppijerman.wellbeing-bot.athor="media@ppijerman.org"
 LABEL org.ppijerman.wellbeing-bot.maintainer="media@ppijerman.org"
 COPY target .
-RUN ls -lRa
 ENTRYPOINT ["java", "-jar", "wellbeing-bot.jar"]
