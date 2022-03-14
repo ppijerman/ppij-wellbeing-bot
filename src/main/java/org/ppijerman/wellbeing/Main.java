@@ -1,12 +1,12 @@
-package ppij.bot;
+package org.ppijerman.wellbeing;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ppij.bot.controller.BotDataSource;
-import ppij.bot.controller.BotListener;
+import org.ppijerman.wellbeing.controller.BotDataSource;
+import org.ppijerman.wellbeing.controller.BotListener;
 
 import javax.security.auth.login.LoginException;
 import java.sql.SQLException;
