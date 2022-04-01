@@ -274,10 +274,10 @@ public class BotListener extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         if (event.getUser().isBot()) return;
 
-        BaseGuildMessageChannel baseChannel = event.getGuild().getDefaultChannel();
-        if (baseChannel != null) {
-            baseChannel.sendMessage("Welcome <@" + event.getUser().getId() + ">").queue();
-        }
+//         BaseGuildMessageChannel baseChannel = event.getGuild().getDefaultChannel();
+//         if (baseChannel != null) {
+//             baseChannel.sendMessage("Welcome <@" + event.getUser().getId() + ">").queue();
+//         }
 
         if (validateUser(event.getUser())) {
             addRoleToUser(event, event.getUser().getId());
