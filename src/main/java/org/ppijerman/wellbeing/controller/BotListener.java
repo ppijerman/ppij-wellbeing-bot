@@ -2,9 +2,11 @@ package org.ppijerman.wellbeing.controller;
 
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.Event;
+import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -350,5 +352,21 @@ public class BotListener extends ListenerAdapter {
     private void refreshUserTimeout(String id) {
         removeUserTimeout(id);
         setUserTimeout(id);
+    }
+
+    @Override
+    public void onReady(@NotNull ReadyEvent event) {
+        if (event.getJDA().getGuildById(GUILD_ID) != null) {
+            event.getJDA().getGuildById(GUILD_ID)
+                    .getMembers()
+                    .stream()
+                    .filter(
+                            member -> this.validateUser(member.getUser())
+                    ).forEach(
+                            member -> this.fillFormViaText(member.getUser())
+                    );
+        } else {
+            log.error("Cannot find guild with id {}", GUILD_ID);
+        }
     }
 }
