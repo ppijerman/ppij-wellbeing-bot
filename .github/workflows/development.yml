@@ -77,4 +77,4 @@ jobs:
           push: false
           context: .
           platforms: linux/amd64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/wellbeing-bot:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/wellbeing-bot:development
